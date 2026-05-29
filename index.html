@@ -1,513 +1,940 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="シンプルでレスポンシブな企業サイト" />
-  <title>株式会社サンプル | 企業サイト</title>
+  <meta name="description" content="IT企業のコーポレートサイト。サービス、実績、会社情報、お問い合わせを掲載したレスポンシブなWebサイト。" />
+  <title>NovaTech株式会社 | ITで未来をつくる</title>
   <style>
     :root {
       --bg: #f8fafc;
       --surface: #ffffff;
-      --surface-2: #eef2ff;
       --text: #0f172a;
       --muted: #475569;
       --line: #e2e8f0;
-      --accent: #2563eb;
-      --accent-2: #1d4ed8;
-      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-      --radius: 20px;
-      --max: 1120px;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #0f172a;
+      --soft: #eff6ff;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --container: 1140px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
       line-height: 1.7;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    button, input, textarea { font: inherit; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
     .container {
-      width: min(100% - 32px, var(--max));
+      width: min(100% - 32px, var(--container));
       margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: var(--shadow);
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    nav a:hover { color: var(--accent); }
-
-    .hero {
-      padding: 72px 0 36px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-main {
-      padding: 34px;
-      background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 30%),
-        var(--surface);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--surface-2);
-      color: var(--accent-2);
-      font-size: 0.92rem;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 4.2rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-    }
-
-    .lead {
-      margin: 18px 0 0;
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 14px;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
       border: 1px solid transparent;
       font-weight: 700;
-      transition: 0.2s ease;
+      cursor: pointer;
+      transition: 0.25s ease;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background: white;
-      color: var(--text);
+      background: #fff;
       border-color: var(--line);
+      color: var(--text);
     }
 
-    .btn:hover { transform: translateY(-1px); }
-
-    .hero-side {
-      display: grid;
-      gap: 16px;
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
     }
 
-    .info-card {
-      padding: 24px;
-    }
-
-    .info-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 16px;
-      background: #f8fafc;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-
-    section {
-      padding: 24px 0;
+    .section {
+      padding: 96px 0;
     }
 
     .section-head {
       display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 16px;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
     }
 
-    .section-head h2 {
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--primary-dark);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .section-title {
       margin: 0;
-      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 1.2;
     }
 
-    .section-head p {
+    .section-desc {
       margin: 0;
       color: var(--muted);
-      max-width: 60ch;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      max-width: 720px;
     }
 
     .card {
-      padding: 22px;
       background: var(--surface);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(226, 232, 240, 0.9);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .card h3 { margin: 0 0 10px; }
-    .card p { margin: 0; color: var(--muted); }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.75);
+    }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    .nav-wrap {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 16px;
     }
 
-    .stat {
-      padding: 20px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
     }
 
-    .stat .label {
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), #60a5fa);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      transition: 0.2s ease;
     }
 
-    .stat .value {
-      margin-top: 10px;
-      font-size: 1.9rem;
-      font-weight: 800;
+    nav a:hover {
+      background: var(--soft);
+      color: var(--primary-dark);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      margin: 4px auto;
+      background: var(--text);
+      border-radius: 999px;
+    }
+
+    .hero {
+      padding: 88px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 14px 0 16px;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      line-height: 1.05;
       letter-spacing: -0.03em;
     }
 
-    .stat .note {
-      margin-top: 8px;
+    .hero p {
+      margin: 0 0 24px;
       color: var(--muted);
-      font-size: 0.92rem;
+      max-width: 640px;
+      font-size: 1.05rem;
     }
 
-    .company {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 16px;
-    }
-
-    .list {
-      display: grid;
+    .hero-actions {
+      display: flex;
       gap: 12px;
-      margin-top: 12px;
+      flex-wrap: wrap;
     }
 
-    .list-item {
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: #f8fafc;
+    .hero-panel {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -30% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #fff, #f8fbff);
       border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+    }
+
+    .stat span {
       color: var(--muted);
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 12px;
-    }
-
-    .field {
-      display: grid;
-      gap: 6px;
-    }
-
-    .field label {
       font-size: 0.92rem;
+    }
+
+    .services-grid,
+    .recruit-grid,
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service,
+    .news-card,
+    .contact-card {
+      padding: 24px;
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--primary-dark);
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .service h3,
+    .news-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .service p,
+    .news-card p,
+    .contact-card p {
+      margin: 0;
       color: var(--muted);
     }
 
-    .field input,
-    .field textarea {
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .about-box {
+      padding: 28px;
+    }
+
+    .about-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .about-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .check {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 26px;
+      border-radius: 50%;
+      background: #dbeafe;
+      color: var(--primary-dark);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--primary-dark);
+    }
+
+    .timeline-item span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .recruit-card {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .recruit-card .tag {
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: #0f766e;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .recruit-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .contact-item .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--primary-dark);
+      flex: 0 0 38px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    input,
+    textarea,
+    select {
       width: 100%;
       padding: 14px 16px;
-      border: 1px solid var(--line);
       border-radius: 14px;
+      border: 1px solid var(--line);
       background: #fff;
       color: var(--text);
+      font: inherit;
       outline: none;
+      transition: 0.2s ease;
     }
 
-    .field input:focus,
-    .field textarea:focus {
-      border-color: rgba(37, 99, 235, 0.45);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
     }
 
     footer {
-      padding: 32px 0 44px;
+      padding: 28px 0 40px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      text-align: center;
-      font-size: 0.94rem;
     }
 
-    @media (max-width: 900px) {
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 960px) {
       .hero-grid,
-      .grid-3,
-      .stats,
-      .company {
+      .split,
+      .contact-grid,
+      .services-grid,
+      .recruit-grid,
+      .news-grid {
         grid-template-columns: 1fr;
       }
 
-      .section-head {
-        align-items: start;
+      .hero {
+        padding-top: 56px;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 20px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      nav.open {
+        display: block;
+      }
+
+      nav ul {
         flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+        gap: 4px;
+      }
+
+      nav a {
+        justify-content: flex-start;
+        padding: 14px 16px;
+      }
+
+      .menu-btn {
+        display: inline-block;
+      }
+
+      .nav-actions .btn {
+        display: none;
       }
     }
 
     @media (max-width: 640px) {
-      .hero { padding-top: 36px; }
-      .hero-main { padding: 24px; }
-      .header-inner { flex-direction: column; align-items: flex-start; }
-      nav { gap: 12px; }
+      .section {
+        padding: 72px 0;
+      }
+
+      .field-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-mark">S</div>
-        <div>
-          <div>株式会社サンプル</div>
-          <small style="color: var(--muted); font-weight: 500;">Simple Corporate Site</small>
-        </div>
-      </div>
-      <nav aria-label="メインナビゲーション">
-        <a href="#about">会社概要</a>
-        <a href="#service">事業内容</a>
-        <a href="#news">お知らせ</a>
-        <a href="#contact">お問い合わせ</a>
+    <div class="container nav-wrap">
+      <a class="logo" href="#home" aria-label="NovaTech株式会社 トップへ">
+        <span class="logo-mark">N</span>
+        <span>NovaTech株式会社</span>
+      </a>
+
+      <nav id="nav">
+        <ul>
+          <li><a href="#about">会社概要</a></li>
+          <li><a href="#services">事業内容</a></li>
+          <li><a href="#cases">実績</a></li>
+          <li><a href="#news">お知らせ</a></li>
+          <li><a href="#recruit">採用</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
       </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#contact">資料請求</a>
+        <button class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main id="home">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="panel hero-main">
-          <div class="eyebrow">レスポンシブ対応の企業サイト</div>
-          <h1>信頼される情報を、<br />見やすく、わかりやすく。</h1>
-          <p class="lead">
-            会社の顔として必要な情報をひと通りまとめた、最低限ちゃんと作ったと言える企業サイトです。人類は「それっぽい」と言えば通すことがあるので、まずはそこを押さえます。
+        <div class="fade-up">
+          <span class="eyebrow">ITで企業の成長を加速</span>
+          <h1>技術で課題を解き、<br>事業を前へ進める。</h1>
+          <p>
+            NovaTech株式会社は、Web開発、業務システム、AI活用支援を通じて、
+            企業のデジタル変革を支援するITパートナーです。
           </p>
-          <div class="cta-row">
+          <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">お問い合わせ</a>
-            <a class="btn btn-secondary" href="#service">サービスを見る</a>
+            <a class="btn btn-secondary" href="#services">サービスを見る</a>
           </div>
         </div>
 
-        <aside class="panel info-card">
-          <strong>企業情報</strong>
-          <div class="info-list">
-            <div class="info-item"><span>社名</span><span>株式会社サンプル</span></div>
-            <div class="info-item"><span>所在地</span><span>Tokyo, Japan</span></div>
-            <div class="info-item"><span>事業</span><span>Web / DX Support</span></div>
-            <div class="info-item"><span>対応</span><span>Mon-Fri 9:00-18:00</span></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>会社概要</h2>
-          <p>会社の説明は長すぎると読まれないので、必要なことだけ。悲しいけどだいたい真実です。</p>
-        </div>
-        <div class="grid-3">
-          <div class="card">
-            <h3>Mission</h3>
-            <p>わかりやすい情報設計で、利用者が迷わないWeb体験を提供します。</p>
-          </div>
-          <div class="card">
-            <h3>Vision</h3>
-            <p>必要な情報にすぐ辿り着ける、誠実で使いやすいサイトを増やします。</p>
-          </div>
-          <div class="card">
-            <h3>Value</h3>
-            <p>シンプル、保守しやすい、レスポンシブ。派手より実用を優先します。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="service">
-      <div class="container">
-        <div class="section-head">
-          <h2>事業内容</h2>
-          <p>最低限の実績っぽさを出すなら、この3つくらいがちょうどいいです。</p>
-        </div>
-        <div class="stats">
-          <article class="panel stat">
-            <div class="label">Web制作</div>
-            <div class="value">01</div>
-            <div class="note">企業サイト、LP、採用ページ</div>
-          </article>
-          <article class="panel stat">
-            <div class="label">UI改善</div>
-            <div class="value">02</div>
-            <div class="note">導線整理、見やすいレイアウト</div>
-          </article>
-          <article class="panel stat">
-            <div class="label">保守運用</div>
-            <div class="value">03</div>
-            <div class="note">更新しやすい軽量な構成</div>
-          </article>
-          <article class="panel stat">
-            <div class="label">スマホ対応</div>
-            <div class="value">04</div>
-            <div class="note">レスポンシブ対応済み</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="news">
-      <div class="container">
-        <div class="section-head">
-          <h2>お知らせ</h2>
-          <p>公開日っぽいものがあると、サイトが急に本物感を帯びます。人は日付に弱い。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card">
-            <h3>2026.04.30</h3>
-            <p>コーポレートサイトを公開しました。</p>
-          </article>
-          <article class="card">
-            <h3>2026.04.20</h3>
-            <p>お問い合わせフォームの見直しを行いました。</p>
-          </article>
-          <article class="card">
-            <h3>2026.04.10</h3>
-            <p>スマートフォン表示に最適化しました。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2>お問い合わせ</h2>
-          <p>フォームを置くと企業サイト感が一気に出ます。中身が空でも見た目は仕事をします。</p>
-        </div>
-        <div class="company">
-          <div class="card">
-            <h3>フォーム</h3>
-            <form class="contact-form">
-              <div class="field">
-                <label for="name">お名前</label>
-                <input id="name" type="text" placeholder="山田 太郎" />
-              </div>
-              <div class="field">
-                <label for="email">メールアドレス</label>
-                <input id="email" type="email" placeholder="example@email.com" />
-              </div>
-              <div class="field">
-                <label for="message">お問い合わせ内容</label>
-                <textarea id="message" rows="5" placeholder="お問い合わせ内容をご入力ください"></textarea>
-              </div>
-              <button class="btn btn-primary" type="button">送信する</button>
-            </form>
-          </div>
-          <div class="card">
-            <h3>連絡先</h3>
-            <div class="list">
-              <div class="list-item">Email: info@example.com</div>
-              <div class="list-item">TEL: 03-1234-5678</div>
-              <div class="list-item">Address: 東京都渋谷区1-2-3</div>
-              <div class="list-item">GitHub Pagesで公開してもOKな構成です</div>
+        <div class="card hero-panel fade-up">
+          <span class="eyebrow">実績ハイライト</span>
+          <h2 style="margin:14px 0 8px; font-size:1.5rem;">企業成長に直結する設計</h2>
+          <p style="margin:0; color:var(--muted);">
+            要件整理から設計、開発、運用まで一貫対応。使われないシステムを作るほど無駄なことも、なかなかありません。
+          </p>
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>120+</strong>
+              <span>導入支援実績</span>
+            </div>
+            <div class="stat">
+              <strong>98%</strong>
+              <span>継続契約率</span>
+            </div>
+            <div class="stat">
+              <strong>24h</strong>
+              <span>初動対応目安</span>
+            </div>
+            <div class="stat">
+              <strong>AI</strong>
+              <span>業務効率化支援</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container split">
+        <div class="card about-box">
+          <div class="section-head">
+            <span class="eyebrow">会社概要</span>
+            <h2 class="section-title">信頼される技術基盤を、わかりやすく。</h2>
+            <p class="section-desc">
+              新規開発から既存システムの改善まで、現場で使える設計を重視しています。
+            </p>
+          </div>
+          <ul class="about-list">
+            <li><span class="check">✓</span><span>要件定義から保守運用までワンストップ対応</span></li>
+            <li><span class="check">✓</span><span>中小企業からスタートアップまで柔軟に対応</span></li>
+            <li><span class="check">✓</span><span>AI活用、業務自動化、Web制作に強み</span></li>
+          </ul>
+        </div>
+
+        <div class="card about-box">
+          <div class="section-head">
+            <span class="eyebrow">沿革</span>
+            <h2 class="section-title">積み上げてきた改善の記録</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>2021年</strong>
+              <span>Web制作・保守事業としてスタート</span>
+            </div>
+            <div class="timeline-item">
+              <strong>2023年</strong>
+              <span>業務システム開発、SaaS導入支援を拡大</span>
+            </div>
+            <div class="timeline-item">
+              <strong>2025年</strong>
+              <span>AI活用支援と自動化設計を本格展開</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">事業内容</span>
+          <h2 class="section-title">課題に合わせて、必要なものだけを作る。</h2>
+          <p class="section-desc">
+            何でも盛り込めば良いと思っている仕様書は、だいたい後で人を苦しめます。だから、必要な機能を厳選します。
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card service">
+            <div class="service-icon">💻</div>
+            <h3>Webサイト制作</h3>
+            <p>企業サイト、採用サイト、LPをブランドに合わせて設計・制作します。</p>
+          </article>
+
+          <article class="card service">
+            <div class="service-icon">⚙️</div>
+            <h3>業務システム開発</h3>
+            <p>在庫管理、顧客管理、予約管理など、業務に直結するシステムを開発します。</p>
+          </article>
+
+          <article class="card service">
+            <div class="service-icon">🤖</div>
+            <h3>AI導入支援</h3>
+            <p>社内ナレッジ整理、問い合わせ対応、作業自動化などの導入を支援します。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">実績</span>
+          <h2 class="section-title">成果に結びつく導入事例</h2>
+        </div>
+
+        <div class="news-grid">
+          <article class="card news-card">
+            <h3>製造業向け社内ポータル刷新</h3>
+            <p>情報共有を一本化し、問い合わせ件数を削減。</p>
+          </article>
+          <article class="card news-card">
+            <h3>予約管理システムの新規構築</h3>
+            <p>電話予約中心の運用をWeb化し、受付工数を圧縮。</p>
+          </article>
+          <article class="card news-card">
+            <h3>AIチャットボット導入支援</h3>
+            <p>よくある質問の自動応答で、対応速度を改善。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="news" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">お知らせ</span>
+          <h2 class="section-title">最新情報</h2>
+        </div>
+
+        <div class="news-grid">
+          <article class="card news-card">
+            <p style="margin-bottom:8px; color:var(--primary-dark); font-weight:700;">2026.05.30</p>
+            <h3>コーポレートサイトをリニューアル</h3>
+            <p>サービス紹介とお問い合わせ導線を改善しました。</p>
+          </article>
+          <article class="card news-card">
+            <p style="margin-bottom:8px; color:var(--primary-dark); font-weight:700;">2026.05.20</p>
+            <h3>AI活用支援メニューを追加</h3>
+            <p>社内業務の自動化支援を強化しました。</p>
+          </article>
+          <article class="card news-card">
+            <p style="margin-bottom:8px; color:var(--primary-dark); font-weight:700;">2026.04.12</p>
+            <h3>採用ページを公開</h3>
+            <p>エンジニア、デザイナー、営業職の募集を開始しました。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="recruit" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">採用</span>
+          <h2 class="section-title">一緒に作る人を募集しています。</h2>
+        </div>
+
+        <div class="recruit-grid">
+          <article class="card recruit-card">
+            <span class="tag">Webエンジニア</span>
+            <p>HTML、CSS、JavaScript、各種フレームワークを使った開発。</p>
+            <ul>
+              <li>フロントエンド開発</li>
+              <li>API連携</li>
+              <li>保守改善</li>
+            </ul>
+          </article>
+
+          <article class="card recruit-card">
+            <span class="tag">UI/UXデザイン</span>
+            <p>見やすく使いやすい画面設計で、成果につながる体験を作成。</p>
+            <ul>
+              <li>情報設計</li>
+              <li>モバイル最適化</li>
+              <li>デザインシステム</li>
+            </ul>
+          </article>
+
+          <article class="card recruit-card">
+            <span class="tag">AI導入担当</span>
+            <p>業務課題を整理し、現場で使えるAI活用を提案・導入。</p>
+            <ul>
+              <li>業務改善提案</li>
+              <li>自動化設計</li>
+              <li>運用支援</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact-grid">
+        <div class="card contact-card">
+          <div class="section-head">
+            <span class="eyebrow">お問い合わせ</span>
+            <h2 class="section-title">ご相談はここからどうぞ。</h2>
+            <p class="section-desc">
+              仕様が固まっていなくても問題ありません。むしろ固まっていない方が多いので、そこから整理します。
+            </p>
+          </div>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="icon">✉️</div>
+              <div>
+                <strong>メール</strong>
+                <p>info@novatech.example</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">📍</div>
+              <div>
+                <strong>所在地</strong>
+                <p>東京都渋谷区</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">🕒</div>
+              <div>
+                <strong>受付時間</strong>
+                <p>平日 10:00 - 18:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card contact-card">
+          <form>
+            <div class="field-grid">
+              <label>
+                会社名
+                <input type="text" name="company" placeholder="株式会社サンプル" />
+              </label>
+              <label>
+                お名前
+                <input type="text" name="name" placeholder="山田 太郎" />
+              </label>
+            </div>
+
+            <div class="field-grid">
+              <label>
+                メールアドレス
+                <input type="email" name="email" placeholder="example@company.com" />
+              </label>
+              <label>
+                お問い合わせ種別
+                <select name="type">
+                  <option>Web制作</option>
+                  <option>業務システム開発</option>
+                  <option>AI導入支援</option>
+                  <option>その他</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              お問い合わせ内容
+              <textarea name="message" placeholder="ご相談内容をご記入ください。"></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary">送信する</button>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      © 2026 株式会社サンプル. All rights reserved.
+    <div class="container footer-wrap">
+      <p>© 2026 NovaTech株式会社</p>
+      <p><a href="#home">ページ上部へ戻る</a></p>
     </div>
   </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
 </body>
 </html>
